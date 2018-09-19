@@ -1,0 +1,33 @@
+{
+  "name": "movinglocal-admin",
+  "version": "0.0.1",
+  "description": "Admin UI for movinglocal",
+  "main": "index.js",
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "eject": "react-scripts eject"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/movinglocal/movinglocal-admin.git"
+  },
+  "author": "g-div",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/movinglocal/movinglocal-admin/issues"
+  },
+  "homepage": "https://github.com/movinglocal/movinglocal-admin#readme",
+  "devDependencies": {
+    "react-scripts": "^1.1.5"
+  },
+  "dependencies": {
+    "@material-ui/core": "^3.0.3",
+    "@material-ui/icons": "^3.0.1",
+    "ra-data-simple-rest": "^2.3.0",
+    "ra-input-rich-text": "^2.3.0",
+    "react": "^16.5.0",
+    "react-admin": "^2.3.0",
+    "react-dom": "^16.5.0"
+  }
+}
