@@ -1,4 +1,4 @@
-export const BASE_URL = 'http://localhost:1337';
+export const BASE_URL = 'https://movinglocal-api.herokuapp.com/';
 
 export default {
   BASE_URL
