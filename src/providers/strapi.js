@@ -98,6 +98,7 @@ export default async (type, resource, params) => {
   if (type === GET_LIST) {
     const count = await fetch(`${apiUrl}/${resource}${COUNT_PATH}?${stringify(query)}`);
     const total = await count.json();
+    if (total.statusCode === 404) return {data, total: 0}
     return {data, total};
   }
 
