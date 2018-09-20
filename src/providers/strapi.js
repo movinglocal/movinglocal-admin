@@ -8,7 +8,7 @@ import {
   GET_MANY,
   GET_MANY_REFERENCE,
 } from 'react-admin';
-import { BASE_URL } from '../config';
+import { BASE_URL, COUNT_PATH } from '../config';
 
 const apiUrl = BASE_URL;
 
@@ -91,7 +91,7 @@ export default async (type, resource, params) => {
   const res = await fetch(url, options);
   const data = await res.json();
   if (type === GET_LIST) {
-    const count = await fetch(`${apiUrl}/${resource}/count?${stringify(query)}`);
+    const count = await fetch(`${apiUrl}/${resource}${COUNT_PATH}?${stringify(query)}`);
     const total = await count.json();
     return {data, total};
   }

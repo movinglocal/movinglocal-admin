@@ -1,10 +1,10 @@
 import { AUTH_LOGIN, AUTH_LOGOUT } from 'react-admin';
-import { BASE_URL } from '../config';
+import { BASE_URL, AUTH_PATH } from '../config';
 
 export default (type, params) => {
   if (type === AUTH_LOGIN) {
     const { username, password } = params;
-    const request = new Request(`${BASE_URL}/auth/local`, {
+    const request = new Request(`${BASE_URL}${AUTH_PATH}`, {
       method: 'POST',
       body: JSON.stringify({ identifier: username, password }),
       headers: new Headers({ 'Content-Type': 'application/json' }),
