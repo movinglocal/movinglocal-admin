@@ -24,6 +24,7 @@ export default (type, params) => {
 
   if (type === AUTH_LOGOUT) {
     localStorage.removeItem('token');
+    localStorage.removeItem('user');
     return Promise.resolve();
   }
   return Promise.resolve();
