@@ -14,6 +14,7 @@ import {
     ImageInput,
     ImageField,
     Filter,
+    required
 } from 'react-admin';
 import RichTextInput from 'ra-input-rich-text';
 import BookIcon from '@material-ui/icons/Book';
@@ -30,7 +31,7 @@ export const ArticleList = (props) => (
     <List {...props} filters={<ArticleFilter />} sort={{ field: 'date', order: 'DESC' }}>
         <Datagrid>
             <TextField source="title" />
-            <DateField source="date" />
+            <DateField source="date" showTime />
             <EditButton basePath="/article" />
         </Datagrid>
     </List>
@@ -56,13 +57,13 @@ export const ArticleEdit = (props) => (
 
 export const ArticleCreate = (props) => (
     <Create title="Create an Article" {...props}>
-        <SimpleForm>
-            <TextInput source="title" />
+        <SimpleForm redirect="list">
+            <TextInput source="title" validate={[required()]} />
             <RichTextInput source="content" />
             <ImageInput source="image" label="Pictures" accept="image/*">
                 <ImageField source="url" title="name" />
             </ImageInput>
-            <DateInput label="Publication date" source="date" />
+            <DateInput label="Publication date" source="date" defaultValue={new Date()} />
         </SimpleForm>
     </Create>
 );
