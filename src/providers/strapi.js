@@ -24,6 +24,9 @@ const apiUrl = BASE_URL;
 export default async (type, resource, params) => {
   let url = '';
   let query = {};
+
+  // @TODO this is a workaround to filter only user's own resources
+  const users = localStorage.getItem('user');
   const token = localStorage.getItem('token');
   const options = {
     headers : new Headers({
@@ -44,7 +47,7 @@ export default async (type, resource, params) => {
         _limit: perPage,
         _start: (perPage * (page - 1))
       };
-      query.users = localStorage.getItem('user');
+      if (users) query.users = users;
       url = `${apiUrl}/${resource}?${stringify(query)}&${stringify(params.filter)}`;
       break;
     }
@@ -54,7 +57,7 @@ export default async (type, resource, params) => {
     case CREATE:
       url = `${apiUrl}/${resource}`;
       options.method = 'POST';
-      params.data.users = localStorage.getItem('user');
+      params.data.users = users;
       options.body = JSON.stringify(params.data);
       break;
     case UPDATE:
@@ -96,8 +99,12 @@ export default async (type, resource, params) => {
       throw new Error(`Unsupported Data Provider request type ${type}`);
   }
 
+
   const res = await fetch(url, options);
+
+  if (res.status === 401) throw res;
   const data = await res.json();
+
   if (type === GET_LIST) {
     const count = await fetch(`${apiUrl}/${resource}${COUNT_PATH}?${stringify(query)}`);
     const total = await count.json();
