@@ -68,7 +68,7 @@ export const ArticleCreate = (props) => (
                 <ImageField source="url" title="name" />
             </ImageInput>
             <DateInput label="Publication date" source="date" defaultValue={new Date()} />
-            <BooleanInput label="Published" source="ignored" format={invert} parse={invert} />
+            <BooleanInput label="Published" source="ignored" format={invert} parse={invert} defaultValue={true} />
         </SimpleForm>
     </Create>
 );
