@@ -12,14 +12,22 @@ import {
     TextInput,
     DateInput,
     ImageInput,
-    ImageField
+    ImageField,
+    Filter,
 } from 'react-admin';
 import RichTextInput from 'ra-input-rich-text';
 import BookIcon from '@material-ui/icons/Book';
 export const ArticleIcon = BookIcon;
 
+const ArticleFilter = (props) => (
+    <Filter {...props}>
+        <TextInput label="Search" source="q" alwaysOn />
+        <TextInput label="Title" source="title" />
+    </Filter>
+);
+
 export const ArticleList = (props) => (
-    <List {...props}>
+    <List {...props} filters={<ArticleFilter />} sort={{ field: 'date', order: 'DESC' }}>
         <Datagrid>
             <TextField source="title" />
             <DateField source="date" />

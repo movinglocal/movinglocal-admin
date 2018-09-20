@@ -35,14 +35,17 @@ export default async (type, resource, params) => {
     case GET_LIST: {
       const { page, perPage } = params.pagination;
       const { field, order } = params.sort;
+      if (params.filter.q) {
+        params.filter.title_contains = params.filter.q;
+        delete params.filter.q;
+      }
       query = {
         _sort: `${field}:${order}`,
         _limit: perPage,
-        _start: (perPage * (page - 1)),
-        //_filter: JSON.stringify(params.filter),
+        _start: (perPage * (page - 1))
       };
       query.users = localStorage.getItem('user');
-      url = `${apiUrl}/${resource}?${stringify(query)}`;
+      url = `${apiUrl}/${resource}?${stringify(query)}&${stringify(params.filter)}`;
       break;
     }
     case GET_ONE:
