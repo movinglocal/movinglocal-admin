@@ -8,6 +8,7 @@ const addUploadFeature = requestHandler => async (type, resource, params) => {
     if ((type === 'UPDATE' || type === 'CREATE') && resource === 'article') {
         if (params.data.image) {
             // only freshly dropped pictures are instance of File
+            if (!(params.data.image.rawFile instanceof File)) return requestHandler(type, resource, params);
             const url = `${BASE_URL}${UPLOAD_PATH}`;
             const data = params.data.image.rawFile;
             const formData = new FormData();
