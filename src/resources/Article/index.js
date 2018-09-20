@@ -39,7 +39,7 @@ export const ArticleEdit = (props) => (
             <TextInput source="title" />
             <RichTextInput source="content" />
             <ImageInput source="image" label="Pictures" accept="image/*">
-                <ImageField source="src" title="title" />
+                <ImageField source="url" title="name" />
             </ImageInput>
             <DateInput label="Publication date" source="date" />
         </SimpleForm>
@@ -52,7 +52,7 @@ export const ArticleCreate = (props) => (
             <TextInput source="title" />
             <RichTextInput source="content" />
             <ImageInput source="image" label="Pictures" accept="image/*">
-                <ImageField source="src" title="title" />
+                <ImageField source="url" title="name" />
             </ImageInput>
             <DateInput label="Publication date" source="date" />
         </SimpleForm>
