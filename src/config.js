@@ -1,4 +1,4 @@
-export const BASE_URL = 'http://localhost:1337';
+export const BASE_URL = 'https://movinglocal-api.herokuapp.com/';
 export const COUNT_PATH = '/count';
 export const AUTH_PATH = '/auth/local';
 export const UPLOAD_PATH = '/upload';
