@@ -5,6 +5,7 @@ import {
   CREATE,
   UPDATE,
   DELETE,
+  DELETE_MANY,
   GET_MANY,
   GET_MANY_REFERENCE,
 } from 'react-admin';
@@ -62,6 +63,10 @@ export default async (type, resource, params) => {
       url = `${apiUrl}/${resource}/${params.id}`;
       options.method = 'DELETE';
       break;
+    case DELETE_MANY:
+      url = `${apiUrl}/content-manager/explorer/deleteAll/${resource}?${stringify(params.ids)}&source=content-manager`;
+      options.method = 'DELETE';
+      break;
     case GET_MANY: {
       query = {
         filter: JSON.stringify({ id: params.ids }),
@@ -94,6 +99,10 @@ export default async (type, resource, params) => {
     const count = await fetch(`${apiUrl}/${resource}${COUNT_PATH}?${stringify(query)}`);
     const total = await count.json();
     return {data, total};
+  }
+
+  if (type === DELETE_MANY) {
+    return {data: params.ids}
   }
 
   return {data};
