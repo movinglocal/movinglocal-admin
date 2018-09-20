@@ -42,6 +42,8 @@ const ArticleTitle = ({ record }) => {
     return <span>Article {record ? `"${record.title}"` : ''}</span>;
 };
 
+const invert = v => !v;
+
 export const ArticleEdit = (props) => (
     <Edit title={<ArticleTitle />} {...props}>
         <SimpleForm>
@@ -56,8 +58,6 @@ export const ArticleEdit = (props) => (
         </SimpleForm>
     </Edit>
 );
-
-const invert = v => !v;
 
 export const ArticleCreate = (props) => (
     <Create title="Create an Article" {...props}>
