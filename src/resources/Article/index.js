@@ -13,6 +13,7 @@ import {
     DateInput,
     ImageInput,
     ImageField,
+    BooleanInput,
     Filter,
     required
 } from 'react-admin';
@@ -51,9 +52,12 @@ export const ArticleEdit = (props) => (
                 <ImageField source="url" title="name" />
             </ImageInput>
             <DateInput label="Publication date" source="date" />
+            <BooleanInput label="Published" source="ignored" format={invert} parse={invert} />
         </SimpleForm>
     </Edit>
 );
+
+const invert = v => !v;
 
 export const ArticleCreate = (props) => (
     <Create title="Create an Article" {...props}>
@@ -64,6 +68,7 @@ export const ArticleCreate = (props) => (
                 <ImageField source="url" title="name" />
             </ImageInput>
             <DateInput label="Publication date" source="date" defaultValue={new Date()} />
+            <BooleanInput label="Published" source="ignored" format={invert} parse={invert} />
         </SimpleForm>
     </Create>
 );
