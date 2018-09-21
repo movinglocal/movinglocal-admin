@@ -10,6 +10,7 @@ import {
     EditButton,
     DisabledInput,
     TextInput,
+    LongTextInput,
     DateInput,
     ImageInput,
     ImageField,
@@ -49,6 +50,7 @@ export const ArticleEdit = (props) => (
         <SimpleForm>
             <DisabledInput source="id" />
             <TextInput source="title" />
+            <LongTextInput source="teaser" />
             <RichTextInput source="content" />
             <ImageInput source="image" label="Pictures" accept="image/*">
                 <ImageField source="url" title="name" />
@@ -63,6 +65,7 @@ export const ArticleCreate = (props) => (
     <Create title="Create an Article" {...props}>
         <SimpleForm redirect="list">
             <TextInput source="title" validate={[required()]} />
+            <LongTextInput source="teaser" />
             <RichTextInput source="content" />
             <ImageInput source="image" label="Pictures" accept="image/*">
                 <ImageField source="url" title="name" />
