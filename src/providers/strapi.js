@@ -39,7 +39,7 @@ export default async (type, resource, params) => {
       const { page, perPage } = params.pagination;
       const { field, order } = params.sort;
       if (params.filter.q) {
-        params.filter.title_contains = params.filter.q;
+        params.filter._q = params.filter.q;
         delete params.filter.q;
       }
       query = {
