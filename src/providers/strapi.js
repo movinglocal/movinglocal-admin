@@ -38,10 +38,6 @@ export default async (type, resource, params) => {
     case GET_LIST: {
       const { page, perPage } = params.pagination;
       const { field, order } = params.sort;
-      if (params.filter.q) {
-        params.filter._q = params.filter.q;
-        delete params.filter.q;
-      }
       query = {
         _sort: `${field}:${order}`,
         _limit: perPage,

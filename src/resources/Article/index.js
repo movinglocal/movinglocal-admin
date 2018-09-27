@@ -24,8 +24,9 @@ export const ArticleIcon = BookIcon;
 
 const ArticleFilter = (props) => (
     <Filter {...props}>
-        <TextInput label="Search" source="q" alwaysOn />
+        <TextInput label="Search" source="_q" alwaysOn />
         <TextInput label="Title" source="title" />
+        <BooleanInput label="Published" source="ignored" format={invert} parse={invert} defaultValue={false} />
     </Filter>
 );
 
