@@ -31,6 +31,7 @@ export default async (type, resource, params) => {
   const options = {
     headers : new Headers({
       Accept: 'application/json',
+      'Content-type': 'application/json',
       Authorization: `Bearer ${token}`
     }),
   };
@@ -44,6 +45,10 @@ export default async (type, resource, params) => {
         _start: (perPage * (page - 1))
       };
       if (users) query.users = users;
+      if (typeof params.filter.q !== undefined) {
+        params.filter._q = params.filter.q;
+        delete params.filter.q;
+      }
       url = `${apiUrl}/${resource}?${stringify(query)}&${stringify(params.filter)}`;
       break;
     }
@@ -53,10 +58,18 @@ export default async (type, resource, params) => {
     case CREATE:
       url = `${apiUrl}/${resource}`;
       options.method = 'POST';
-      params.data.users = users;
+      if (resource === 'article') params.data.source = source;
+      if (resource === 'article') params.data.type = 'kollektive';
       options.body = JSON.stringify(params.data);
       break;
     case UPDATE:
+      if (params.id === 'me') {
+        params.id = params.data._id;
+        params.data = {
+          description: params.data.description,
+          image: params.data.image
+        }
+      }
       url = `${apiUrl}/${resource}/${params.id}`;
       options.method = 'PUT';
       options.body = JSON.stringify(params.data);
@@ -70,10 +83,11 @@ export default async (type, resource, params) => {
       options.method = 'DELETE';
       break;
     case GET_MANY: {
-      query = {
-        filter: JSON.stringify({ id: params.ids }),
-      };
-      url = `${apiUrl}/${resource}?${stringify(query)}`;
+      query = params.ids.map(id => {
+        if (typeof id === 'object') return stringify({_id: id.id});
+        else return stringify({_id: id});
+      });
+      url = `${apiUrl}/${resource}?${query.join('&')}`;
       break;
     }
     case GET_MANY_REFERENCE: {
@@ -110,6 +124,10 @@ export default async (type, resource, params) => {
 
   if (type === DELETE_MANY) {
     return {data: params.ids}
+  }
+
+  if (type === GET_ONE) {
+    data.id = params.id;
   }
 
   return {data};

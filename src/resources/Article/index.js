@@ -15,6 +15,8 @@ import {
     ImageInput,
     ImageField,
     BooleanInput,
+    ReferenceArrayInput,
+    AutocompleteArrayInput,
     Filter,
     required
 } from 'react-admin';
@@ -56,6 +58,9 @@ export const ArticleEdit = (props) => (
             <ImageInput source="image" label="Pictures" accept="image/*">
                 <ImageField source="url" title="name" />
             </ImageInput>
+            <ReferenceArrayInput label="Tags" reference="tag" source="tags">
+                <AutocompleteArrayInput />
+            </ReferenceArrayInput>
             <DateInput label="Publication date" source="date" />
             <BooleanInput label="Published" source="ignored" format={invert} parse={invert} />
         </SimpleForm>
@@ -71,6 +76,9 @@ export const ArticleCreate = (props) => (
             <ImageInput source="image" label="Pictures" accept="image/*">
                 <ImageField source="url" title="name" />
             </ImageInput>
+            <ReferenceArrayInput label="Tags" reference="tag" source="tags">
+                <AutocompleteArrayInput />
+            </ReferenceArrayInput>
             <DateInput label="Publication date" source="date" defaultValue={new Date()} />
             <BooleanInput label="Published" source="ignored" format={invert} parse={invert} defaultValue={true} />
         </SimpleForm>

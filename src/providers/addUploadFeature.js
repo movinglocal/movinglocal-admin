@@ -5,7 +5,7 @@ import { BASE_URL, UPLOAD_PATH } from '../config';
  * the `picture` sent property, with `src` and `title` attributes.
  */
 const addUploadFeature = requestHandler => async (type, resource, params) => {
-    if ((type === 'UPDATE' || type === 'CREATE') && resource === 'article') {
+    if (type === 'UPDATE' || type === 'CREATE') {
         if (params.data.image) {
             // only freshly dropped pictures are instance of File
             if (!(params.data.image.rawFile instanceof File)) return requestHandler(type, resource, params);
