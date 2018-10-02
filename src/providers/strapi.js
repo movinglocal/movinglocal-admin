@@ -26,6 +26,7 @@ export default async (type, resource, params) => {
   let query = {};
 
   // @TODO this is a workaround to filter only user's own resources
+  const user = localStorage.getItem('user');
   const token = localStorage.getItem('token');
   const source = localStorage.getItem('source');
   const options = {
@@ -64,8 +65,9 @@ export default async (type, resource, params) => {
       break;
     case UPDATE:
       if (params.id === 'me') {
-        params.id = params.data._id;
+        params.id = user;
         params.data = {
+          username: params.data.username,
           description: params.data.description,
           image: params.data.image
         }

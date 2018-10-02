@@ -3,6 +3,7 @@ import {
     Edit,
     SimpleForm,
     DisabledInput,
+    TextInput,
     LongTextInput,
     ImageInput,
     ImageField
@@ -16,7 +17,7 @@ export const UserEdit = (props) => (
     <Edit title={<UserTitle />} {...props}>
         <SimpleForm redirect="/">
             <DisabledInput source="_id" />
-            <DisabledInput source="username" />
+            <TextInput source="username" />
             <DisabledInput source="email" />
             <LongTextInput source="description" />
             <ImageInput source="image" label="Pictures" accept="image/*">
