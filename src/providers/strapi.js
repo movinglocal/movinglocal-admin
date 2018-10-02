@@ -26,8 +26,8 @@ export default async (type, resource, params) => {
   let query = {};
 
   // @TODO this is a workaround to filter only user's own resources
-  const users = localStorage.getItem('user');
   const token = localStorage.getItem('token');
+  const source = localStorage.getItem('source');
   const options = {
     headers : new Headers({
       Accept: 'application/json',
@@ -44,7 +44,7 @@ export default async (type, resource, params) => {
         _limit: perPage,
         _start: (perPage * (page - 1))
       };
-      if (users) query.users = users;
+      if (source && resource === 'article') query['source._id'] = source;
       if (typeof params.filter.q !== undefined) {
         params.filter._q = params.filter.q;
         delete params.filter.q;

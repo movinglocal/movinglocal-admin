@@ -19,6 +19,7 @@ export default (type, params) => {
     .then(({ user, jwt }) => {
       localStorage.setItem('user', user.id);
       localStorage.setItem('token', jwt);
+      localStorage.setItem('source', user.source);
     });
   }
 
