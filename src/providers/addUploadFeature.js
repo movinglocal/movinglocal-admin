@@ -13,6 +13,13 @@ const addUploadFeature = requestHandler => async (type, resource, params) => {
             const data = params.data.image.rawFile;
             const formData = new FormData();
             formData.append('files', data);
+            if (resource === 'user') {
+                const refId = localStorage.getItem('user');
+                formData.append('refId', refId);
+                formData.append('ref', 'user');
+                formData.append('source', 'users-permissions');
+                formData.append('field', 'image');
+            }
 
             const token = localStorage.getItem('token');
             const headers = new Headers({
