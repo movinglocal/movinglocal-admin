@@ -20,9 +20,11 @@ import {
     Filter,
     required
 } from 'react-admin';
+import TagQuickCreateButton from '../Tag/TagQuickCreateButton';
 import RichTextInput from 'ra-input-rich-text';
 import BookIcon from '@material-ui/icons/Book';
 export const ArticleIcon = BookIcon;
+
 
 const ArticleFilter = (props) => (
     <Filter {...props}>
@@ -61,6 +63,7 @@ export const ArticleEdit = (props) => (
             <ReferenceArrayInput label="Tags" reference="tag" source="tags">
                 <AutocompleteArrayInput />
             </ReferenceArrayInput>
+            <TagQuickCreateButton />
             <DateInput label="Publication date" source="date" />
             <BooleanInput label="Published" source="ignored" format={invert} parse={invert} />
         </SimpleForm>
@@ -79,6 +82,7 @@ export const ArticleCreate = (props) => (
             <ReferenceArrayInput label="Tags" reference="tag" source="tags">
                 <AutocompleteArrayInput />
             </ReferenceArrayInput>
+            <TagQuickCreateButton />
             <DateInput label="Publication date" source="date" defaultValue={new Date()} />
             <BooleanInput label="Published" source="ignored" format={invert} parse={invert} defaultValue={true} />
         </SimpleForm>
