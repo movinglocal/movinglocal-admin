@@ -30,7 +30,7 @@ const ArticleFilter = (props) => (
     <Filter {...props}>
         <TextInput label="Search" source="_q" alwaysOn />
         <TextInput label="Title" source="title" />
-        <BooleanInput label="Published" source="ignored" format={invert} parse={invert} defaultValue={false} />
+        <BooleanInput label="Published" source="isVisible" format={invert} parse={invert} defaultValue={false} />
     </Filter>
 );
 
@@ -65,7 +65,7 @@ export const ArticleEdit = (props) => (
             </ReferenceArrayInput>
             <TagQuickCreateButton />
             <DateInput label="Publication date" source="date" />
-            <BooleanInput label="Published" source="ignored" format={invert} parse={invert} />
+            <BooleanInput label="Published" source="isVisible" format={invert} parse={invert} />
         </SimpleForm>
     </Edit>
 );
@@ -84,7 +84,7 @@ export const ArticleCreate = (props) => (
             </ReferenceArrayInput>
             <TagQuickCreateButton />
             <DateInput label="Publication date" source="date" defaultValue={new Date()} />
-            <BooleanInput label="Published" source="ignored" format={invert} parse={invert} defaultValue={true} />
+            <BooleanInput label="Published" source="isVisible" format={invert} parse={invert} defaultValue={true} />
         </SimpleForm>
     </Create>
 );
