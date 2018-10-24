@@ -17,7 +17,7 @@ class App extends PureComponent {
       <Admin appLayout={Layout} authProvider={authProvider} dataProvider={uploadCapableDataProvider}>
           <Resource name="article" list={ArticleList} edit={ArticleEdit} create={ArticleCreate} icon={ArticleIcon}/>
           <Resource name="tag"/>
-          <Resource name="user" edit={UserEdit} icon={UserIcon}/>
+          <Resource name="users" edit={UserEdit} icon={UserIcon}/>
       </Admin>
     );
   }
