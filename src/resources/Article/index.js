@@ -39,7 +39,7 @@ export const ArticleList = (props) => (
     <Datagrid>
       <TextField source="title" />
       <DateField source="date" showTime />
-      <EditButton basePath="/article" />
+      <EditButton basePath="/articles" />
     </Datagrid>
   </List>
 );
