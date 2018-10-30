@@ -60,7 +60,7 @@ export const ArticleEdit = (props) => (
             <ImageInput source="image" label="Pictures" accept="image/*">
                 <ImageField source="url" title="name" />
             </ImageInput>
-            <ReferenceArrayInput label="Tags" reference="tag" source="tags">
+            <ReferenceArrayInput label="Tags" reference="tags" source="tags">
                 <AutocompleteArrayInput />
             </ReferenceArrayInput>
             <TagQuickCreateButton />
@@ -79,7 +79,7 @@ export const ArticleCreate = (props) => (
             <ImageInput source="image" label="Pictures" accept="image/*">
                 <ImageField source="url" title="name" />
             </ImageInput>
-            <ReferenceArrayInput label="Tags" reference="tag" source="tags">
+            <ReferenceArrayInput label="Tags" reference="tags" source="tags">
                 <AutocompleteArrayInput />
             </ReferenceArrayInput>
             <TagQuickCreateButton />

@@ -54,7 +54,7 @@ class TagQuickCreateButton extends Component {
 
         // As we want to know when the new tag has been created in order to close the modal, we use the
         // dataProvider directly
-        dataProvider(CREATE, 'tag', { data: values })
+        dataProvider(CREATE, 'tags', { data: values })
             .then(({ data }) => {
                 // Update the main react-admin form (in this case, the comments creation form)
                 change(REDUX_FORM_NAME, 'tag_id', data.id);
@@ -89,7 +89,7 @@ class TagQuickCreateButton extends Component {
                         <SimpleForm
                             // We override the redux-form name to avoid collision with the react-admin main form
                             form="tag-quick-create"
-                            resource="tag"
+                            resource="tags"
                             // We override the redux-form onSubmit prop to handle the submission ourselves
                             onSubmit={this.handleSubmit}
                             // We want no toolbar at all as we have our modal actions

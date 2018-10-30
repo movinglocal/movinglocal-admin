@@ -15,9 +15,9 @@ class App extends PureComponent {
   render() {
     return (
       <Admin appLayout={Layout} authProvider={authProvider} dataProvider={uploadCapableDataProvider}>
-          <Resource name="articles" list={ArticleList} edit={ArticleEdit} create={ArticleCreate} icon={ArticleIcon}/>
-          <Resource name="tags"/>
-          <Resource name="users" edit={UserEdit} icon={UserIcon}/>
+          <Resource name="articles" list={ArticleList} edit={ArticleEdit} create={ArticleCreate} icon={ArticleIcon} />
+          <Resource name="tags" />
+          <Resource name="users" edit={UserEdit} icon={UserIcon} />
       </Admin>
     );
   }
