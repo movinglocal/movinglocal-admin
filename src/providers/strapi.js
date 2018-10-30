@@ -45,7 +45,7 @@ export default async (type, resource, params) => {
         _limit: perPage,
         _start: (perPage * (page - 1))
       };
-      // if (source && resource === 'articles') query['source._id'] = source;
+      if (source && resource === 'articles') query['source._id'] = source;
       if (typeof params.filter.q !== undefined) {
         params.filter._q = params.filter.q;
         delete params.filter.q;
@@ -60,7 +60,6 @@ export default async (type, resource, params) => {
       url = `${apiUrl}/${resource}`;
       options.method = 'POST';
       if (resource === 'articles') params.data.source = source;
-      if (resource === 'articles') params.data.type = 'kollektive';
       options.body = JSON.stringify(params.data);
       break;
     case UPDATE:
