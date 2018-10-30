@@ -18,12 +18,13 @@ import {
   ReferenceArrayInput,
   AutocompleteArrayInput,
   Filter,
-  required
+  required,
+  SelectArrayInput,
+  ChipField
 } from 'react-admin';
-
-import TagQuickCreateButton from '../Tag/TagQuickCreateButton';
 import RichTextInput from 'ra-input-rich-text';
 import BookIcon from '@material-ui/icons/Book';
+
 export const ArticleIcon = BookIcon;
 
 const ArticleFilter = (props) => (
@@ -58,12 +59,12 @@ export const ArticleEdit = (props) => (
       <LongTextInput source="teaser" />
       <RichTextInput source="content" />
       <ImageInput source="image" label="Pictures" accept="image/*">
-      <ImageField source="url" title="name" />
+        <ImageField source="url" title="name" />
       </ImageInput>
       <ReferenceArrayInput label="Tags" reference="tags" source="tags">
-      <AutocompleteArrayInput />
+        <AutocompleteArrayInput />
       </ReferenceArrayInput>
-      <TagQuickCreateButton />
+      <AutocompleteArrayInput options={{ fullWidth: true }} allowEmpty source="tags" reference="tags" />
       <DateInput label="Publication date" source="date" />
       <BooleanInput label="Published" source="isVisible" format={invert} parse={invert} />
     </SimpleForm>
@@ -77,12 +78,11 @@ export const ArticleCreate = (props) => (
       <LongTextInput source="teaser" />
       <RichTextInput source="content" />
       <ImageInput source="image" label="Pictures" accept="image/*">
-      <ImageField source="url" title="name" />
+        <ImageField source="url" title="name" />
       </ImageInput>
       <ReferenceArrayInput label="Tags" reference="tags" source="tags">
-      <AutocompleteArrayInput />
+        <AutocompleteArrayInput />
       </ReferenceArrayInput>
-      <TagQuickCreateButton />
       <DateInput label="Publication date" source="date" defaultValue={new Date()} />
       <BooleanInput label="Published" source="isVisible" format={invert} parse={invert} defaultValue={true} />
     </SimpleForm>

@@ -87,7 +87,7 @@ class TagQuickCreateButton extends Component {
     return (
       <Fragment>
         <Button onClick={this.handleClick} label="ra.action.create">
-            <IconContentAdd />
+          <IconContentAdd />
         </Button>
         <Dialog
             fullWidth

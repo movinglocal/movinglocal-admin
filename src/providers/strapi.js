@@ -36,6 +36,7 @@ export default async (type, resource, params) => {
       Authorization: `Bearer ${token}`
     }),
   };
+  console.log(type, resource, params);
   switch (type) {
     case GET_LIST: {
       const { page, perPage } = params.pagination;
@@ -115,6 +116,8 @@ export default async (type, resource, params) => {
 
   if (res.status === 401) throw res;
   const data = await res.json();
+
+  console.log(data);
 
   if (type === GET_LIST) {
     const count = await fetch(`${apiUrl}/${resource}${COUNT_PATH}?${stringify(query)}`);
