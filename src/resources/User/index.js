@@ -14,15 +14,15 @@ export const UserIcon = FaceIcon;
 const UserTitle = () => (<span>Profile</span>);
 
 export const UserEdit = (props) => (
-    <Edit title={<UserTitle />} {...props}>
-        <SimpleForm redirect="/">
-            <DisabledInput source="_id" />
-            <TextInput source="username" />
-            <DisabledInput source="email" />
-            <LongTextInput source="description" />
-            <ImageInput source="image" label="Pictures" accept="image/*">
-                <ImageField source="url" title="name" />
-            </ImageInput>
-        </SimpleForm>
-    </Edit>
+  <Edit title={<UserTitle />} {...props}>
+    <SimpleForm redirect="/">
+      <DisabledInput source="_id" />
+      <TextInput source="username" />
+      <DisabledInput source="email" />
+      <LongTextInput source="description" />
+      <ImageInput source="image" label="Pictures" accept="image/*">
+      <ImageField source="url" title="name" />
+      </ImageInput>
+    </SimpleForm>
+  </Edit>
 );

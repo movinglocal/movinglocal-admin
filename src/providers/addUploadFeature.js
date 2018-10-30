@@ -5,47 +5,48 @@ import { BASE_URL, UPLOAD_PATH } from '../config';
  * the `picture` sent property, with `src` and `title` attributes.
  */
 const addUploadFeature = requestHandler => async (type, resource, params) => {
-    if (type === 'UPDATE' || type === 'CREATE') {
-        if (params.data.image) {
-            // only freshly dropped pictures are instance of File
-            if (!(params.data.image.rawFile instanceof File)) return requestHandler(type, resource, params);
-            const url = `${BASE_URL}${UPLOAD_PATH}`;
-            const data = params.data.image.rawFile;
-            const formData = new FormData();
-            formData.append('files', data);
-            if (resource === 'user') {
-                const refId = localStorage.getItem('user');
-                formData.append('refId', refId);
-                formData.append('ref', 'user');
-                formData.append('source', 'users-permissions');
-                formData.append('field', 'image');
-            }
+  if (type === 'UPDATE' || type === 'CREATE') {
+    if (params.data.image) {
+      // only freshly dropped pictures are instance of File
+      if (!(params.data.image.rawFile instanceof File)) return requestHandler(type, resource, params);
+      const url = `${BASE_URL}${UPLOAD_PATH}`;
+      const data = params.data.image.rawFile;
+      const formData = new FormData();
+      formData.append('files', data);
 
-            const token = localStorage.getItem('token');
-            const headers = new Headers({
-                Accept: 'application/json',
-                Authorization: `Bearer ${token}`
-            });
+      if (resource === 'user') {
+        const refId = localStorage.getItem('user');
+        formData.append('refId', refId);
+        formData.append('ref', 'user');
+        formData.append('source', 'users-permissions');
+        formData.append('field', 'image');
+      }
 
-            const req = await fetch(url, {
-                method: 'POST',
-                body: formData,
-                headers
-            });
+      const token = localStorage.getItem('token');
+      const headers = new Headers({
+        Accept: 'application/json',
+        Authorization: `Bearer ${token}`
+      });
 
-            const res = await req.json();
+      const req = await fetch(url, {
+        method: 'POST',
+        body: formData,
+        headers
+      });
 
-            return requestHandler(type, resource, {
-                ...params,
-                data: {
-                    ...params.data,
-                    image: res
-                }
-            })
+      const res = await req.json();
+
+      return requestHandler(type, resource, {
+        ...params,
+        data: {
+          ...params.data,
+          image: res
         }
+      })
     }
-    // for other request types and reources, fall back to the defautl request handler
-    return requestHandler(type, resource, params);
+  }
+  // for other request types and reources, fall back to the defautl request handler
+  return requestHandler(type, resource, params);
 };
 
 export default addUploadFeature;

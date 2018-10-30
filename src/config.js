@@ -8,4 +8,4 @@ export default {
   COUNT_PATH,
   AUTH_PATH,
   UPLOAD_PATH
-}
+};
