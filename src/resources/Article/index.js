@@ -31,7 +31,7 @@ const ArticleFilter = (props) => (
   <Filter {...props}>
     <TextInput label="Search" source="_q" alwaysOn />
     <TextInput label="Title" source="title" />
-    <BooleanInput label="Published" source="isVisible" format={invert} parse={invert} defaultValue={false} />
+    <BooleanInput label="Published" source="isVisible" defaultValue={false} />
   </Filter>
 );
 
@@ -49,7 +49,13 @@ const ArticleTitle = ({ record }) => {
   return <span>Article {record ? `"${record.title}"` : ''}</span>;
 };
 
-const invert = v => !v;
+const WorkingAutocompleteArrayInput = props => {
+  if (props.input.value) {
+    props.input.value = props.input.value.map(d => d.id || d);
+  }
+
+  return <AutocompleteArrayInput {...props} />;
+}
 
 export const ArticleEdit = (props) => (
   <Edit title={<ArticleTitle />} {...props}>
@@ -62,11 +68,10 @@ export const ArticleEdit = (props) => (
         <ImageField source="url" title="name" />
       </ImageInput>
       <ReferenceArrayInput label="Tags" reference="tags" source="tags">
-        <AutocompleteArrayInput />
+        <WorkingAutocompleteArrayInput />
       </ReferenceArrayInput>
-      <AutocompleteArrayInput options={{ fullWidth: true }} allowEmpty source="tags" reference="tags" />
       <DateInput label="Publication date" source="date" />
-      <BooleanInput label="Published" source="isVisible" format={invert} parse={invert} />
+      <BooleanInput label="Published" source="isVisible" />
     </SimpleForm>
   </Edit>
 );
@@ -81,10 +86,10 @@ export const ArticleCreate = (props) => (
         <ImageField source="url" title="name" />
       </ImageInput>
       <ReferenceArrayInput label="Tags" reference="tags" source="tags">
-        <AutocompleteArrayInput />
+        <WorkingAutocompleteArrayInput />
       </ReferenceArrayInput>
       <DateInput label="Publication date" source="date" defaultValue={new Date()} />
-      <BooleanInput label="Published" source="isVisible" format={invert} parse={invert} defaultValue={true} />
+      <BooleanInput label="Published" source="isVisible" defaultValue={true} />
     </SimpleForm>
   </Create>
 );

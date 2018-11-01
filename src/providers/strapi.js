@@ -36,7 +36,7 @@ export default async (type, resource, params) => {
       Authorization: `Bearer ${token}`
     }),
   };
-  console.log(type, resource, params);
+  // console.log(type, resource, params);
   switch (type) {
     case GET_LIST: {
       const { page, perPage } = params.pagination;
@@ -47,10 +47,10 @@ export default async (type, resource, params) => {
         _start: (perPage * (page - 1))
       };
       if (source && resource === 'articles') query['source._id'] = source;
-      if (typeof params.filter.q !== undefined) {
+      if (typeof params.filter.q !== 'undefined' && params.filter.q !== '') {
         params.filter._q = params.filter.q;
-        delete params.filter.q;
       }
+      delete params.filter.q;
       url = `${apiUrl}/${resource}?${stringify(query)}&${stringify(params.filter)}`;
       break;
     }
