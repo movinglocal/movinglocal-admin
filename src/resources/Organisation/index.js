@@ -9,16 +9,15 @@ import {
     ImageField
 } from 'react-admin';
 import FaceIcon from '@material-ui/icons/Face';
-export const UserIcon = FaceIcon;
+export const OrganisationIcon = FaceIcon;
 
-const UserTitle = () => (<span>Profile</span>);
+const OrganisationTitle = () => (<span>Profile</span>);
 
-export const UserEdit = (props) => (
-  <Edit title={<UserTitle />} {...props}>
+export const OrganisationEdit = (props) => (
+  <Edit title={<OrganisationTitle />} {...props}>
     <SimpleForm redirect="/">
       <DisabledInput source="_id" />
-      <TextInput source="username" />
-      <DisabledInput source="email" />
+      <TextInput source="name" />
       <LongTextInput source="description" />
       <ImageInput source="image" label="Pictures" accept="image/*">
       <ImageField source="url" title="name" />

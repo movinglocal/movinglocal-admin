@@ -19,13 +19,16 @@ export default (type, params) => {
     .then(({ user, jwt }) => {
       localStorage.setItem('user', user.id);
       localStorage.setItem('token', jwt);
-      localStorage.setItem('source', user.source);
+      localStorage.setItem('organisation', user.organisation.id);
+      localStorage.setItem('source', user.organisation.sources.find(source => ({type: 'local'})).id);
     });
   }
 
   if (type === AUTH_LOGOUT) {
     localStorage.removeItem('token');
     localStorage.removeItem('user');
+    localStorage.removeItem('source');
+    localStorage.removeItem('organisation');
     return Promise.resolve();
   }
 
