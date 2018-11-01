@@ -18,9 +18,7 @@ import {
   ReferenceArrayInput,
   AutocompleteArrayInput,
   Filter,
-  required,
-  SelectArrayInput,
-  ChipField
+  required
 } from 'react-admin';
 import RichTextInput from 'ra-input-rich-text';
 import BookIcon from '@material-ui/icons/Book';
@@ -58,7 +56,7 @@ const WorkingAutocompleteArrayInput = props => {
 }
 
 export const ArticleEdit = (props) => (
-  <Edit title={<ArticleTitle />} {...props}>
+  <Edit undoable={false} title={<ArticleTitle />} {...props}>
     <SimpleForm>
       <DisabledInput source="id" />
       <TextInput source="title" />
@@ -77,7 +75,7 @@ export const ArticleEdit = (props) => (
 );
 
 export const ArticleCreate = (props) => (
-  <Create title="Create an Article" {...props}>
+  <Create undoable={false} title="Create an Article" {...props}>
     <SimpleForm redirect="list">
       <TextInput source="title" validate={[required()]} />
       <LongTextInput source="teaser" />
