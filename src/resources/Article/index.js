@@ -23,6 +23,8 @@ import {
 import RichTextInput from 'ra-input-rich-text';
 import BookIcon from '@material-ui/icons/Book';
 
+import './style.css';
+
 export const ArticleIcon = BookIcon;
 
 const ArticleFilter = (props) => (
