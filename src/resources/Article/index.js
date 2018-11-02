@@ -12,11 +12,14 @@ import {
   TextInput,
   LongTextInput,
   DateInput,
+  DateTimeInput,
   ImageInput,
   ImageField,
   BooleanInput,
   ReferenceArrayInput,
   AutocompleteArrayInput,
+  SelectInput,
+  FormDataConsumer,
   Filter,
   required
 } from 'react-admin';
@@ -24,6 +27,11 @@ import RichTextInput from 'ra-input-rich-text';
 import BookIcon from '@material-ui/icons/Book';
 
 import './style.css';
+
+const articleTypes = [
+  {id: 'news', name: 'News'},
+  {id: 'event', name: 'Event'}
+];
 
 export const ArticleIcon = BookIcon;
 
@@ -54,6 +62,8 @@ const WorkingAutocompleteArrayInput = props => {
     props.input.value = props.input.value.map(d => d.id || d);
   }
 
+  // @TODO avoid duplicates
+
   return <AutocompleteArrayInput {...props} />;
 }
 
@@ -70,7 +80,14 @@ export const ArticleEdit = (props) => (
       <ReferenceArrayInput label="Tags" reference="tags" source="tags">
         <WorkingAutocompleteArrayInput />
       </ReferenceArrayInput>
+      <SelectInput source="type" choices={articleTypes} defaultValue={'news'} />
+      <FormDataConsumer>
+        {({ formData, ...rest }) => (formData.type === 'event') &&
+          <DateTimeInput source="event date" />
+        }
+      </FormDataConsumer>
       <DateInput label="Publication date" source="date" />
+      <TextInput source="address" />
       <BooleanInput label="Published" source="isVisible" />
     </SimpleForm>
   </Edit>
@@ -88,7 +105,14 @@ export const ArticleCreate = (props) => (
       <ReferenceArrayInput label="Tags" reference="tags" source="tags">
         <WorkingAutocompleteArrayInput />
       </ReferenceArrayInput>
+      <SelectInput source="type" choices={articleTypes} defaultValue={'news'} />
+      <FormDataConsumer>
+        {({ formData, ...rest }) => (formData.type === 'event') &&
+          <DateTimeInput source="event date" />
+        }
+      </FormDataConsumer>
       <DateInput label="Publication date" source="date" defaultValue={new Date()} />
+      <TextInput source="address" />
       <BooleanInput label="Published" source="isVisible" defaultValue={true} />
     </SimpleForm>
   </Create>
