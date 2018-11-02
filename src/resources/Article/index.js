@@ -12,7 +12,6 @@ import {
   TextInput,
   LongTextInput,
   DateInput,
-  DateTimeInput,
   ImageInput,
   ImageField,
   BooleanInput,
@@ -83,7 +82,7 @@ export const ArticleEdit = (props) => (
       <SelectInput source="type" choices={articleTypes} defaultValue={'news'} />
       <FormDataConsumer>
         {({ formData, ...rest }) => (formData.type === 'event') &&
-          <DateTimeInput source="event date" />
+          <DateInput source="event date" />
         }
       </FormDataConsumer>
       <DateInput label="Publication date" source="date" />
@@ -108,7 +107,7 @@ export const ArticleCreate = (props) => (
       <SelectInput source="type" choices={articleTypes} defaultValue={'news'} />
       <FormDataConsumer>
         {({ formData, ...rest }) => (formData.type === 'event') &&
-          <DateTimeInput source="event date" />
+          <DateInput source="event date" />
         }
       </FormDataConsumer>
       <DateInput label="Publication date" source="date" defaultValue={new Date()} />
