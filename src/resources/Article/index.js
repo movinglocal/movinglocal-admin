@@ -38,7 +38,7 @@ const ArticleFilter = (props) => (
   <Filter {...props}>
     <TextInput label="Search" source="_q" alwaysOn />
     <TextInput label="Title" source="title" />
-    <BooleanInput label="Published" source="isVisible" defaultValue={false} />
+    <BooleanInput label="Published" source="published" defaultValue={false} />
   </Filter>
 );
 
@@ -87,7 +87,7 @@ export const ArticleEdit = (props) => (
       </FormDataConsumer>
       <DateInput label="Publication date" source="date" />
       <TextInput source="address" />
-      <BooleanInput label="Published" source="isVisible" />
+      <BooleanInput label="Published" source="published" />
     </SimpleForm>
   </Edit>
 );
@@ -112,7 +112,7 @@ export const ArticleCreate = (props) => (
       </FormDataConsumer>
       <DateInput label="Publication date" source="date" defaultValue={new Date()} />
       <TextInput source="address" />
-      <BooleanInput label="Published" source="isVisible" defaultValue={true} />
+      <BooleanInput label="Published" source="published" defaultValue={true} />
     </SimpleForm>
   </Create>
 );
