@@ -57,10 +57,12 @@ const ArticleTitle = ({ record }) => {
 };
 
 const WorkingAutocompleteArrayInput = props => {
-  if (props.input.value) {
+  if (props.input.value === '') {
+    props.input.value = [];
+  } else if (props.input.value) {
     props.input.value = props.input.value.map(d => d.id || d);
   }
-
+  
   // @TODO avoid duplicates
 
   return <AutocompleteArrayInput {...props} />;
