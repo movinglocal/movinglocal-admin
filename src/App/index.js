@@ -1,12 +1,14 @@
 import React, { PureComponent } from 'react';
 import { Admin, Resource } from 'react-admin';
 
-import Layout from './Layout';
-import strapiProvider from './providers/strapi';
-import authProvider from './providers/authProvider';
-import addUploadFeature from './providers/addUploadFeature';
-import { ArticleList, ArticleEdit, ArticleCreate, ArticleIcon } from './resources/Article';
-import { OrganisationEdit, OrganisationIcon } from './resources/Organisation';
+import './App.css';
+
+import Layout from '../Layout';
+import strapiProvider from '../providers/strapi';
+import authProvider from '../providers/authProvider';
+import addUploadFeature from '../providers/addUploadFeature';
+import { ArticleList, ArticleEdit, ArticleCreate, ArticleIcon } from '../resources/Article';
+import { OrganisationEdit, OrganisationIcon } from '../resources/Organisation';
 
 const uploadCapableDataProvider = addUploadFeature(strapiProvider);
 
