@@ -62,7 +62,7 @@ const WorkingAutocompleteArrayInput = props => {
   } else if (props.input.value) {
     props.input.value = props.input.value.map(d => d.id || d);
   }
-  
+
   // @TODO avoid duplicates
 
   return <AutocompleteArrayInput {...props} />;

@@ -1,4 +1,10 @@
-.ra-rich-text-input .ql-editor {
+.ra-rich-text-input .ql-container  .ql-editor {
   min-height: 200px;
-  border: 1px solid #444;
+  border: 1px solid rgba(0, 0, 0, 0.42);
+  font-family: Roboto, sans-serif;
+  padding: 16px;
+}
+
+.previews img {
+  margin: 1em 0 0 0;
 }
