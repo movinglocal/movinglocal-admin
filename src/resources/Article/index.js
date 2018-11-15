@@ -72,8 +72,8 @@ export const ArticleEdit = (props) => (
   <Edit undoable={false} title={<ArticleTitle />} {...props}>
     <SimpleForm>
       <DisabledInput source="id" />
-      <TextInput source="title" />
-      <LongTextInput source="teaser" />
+      <TextInput source="title" validate={[required()]} />
+      <LongTextInput source="teaser" validate={[required()]} />
       <RichTextInput source="content" />
       <ImageInput source="image" label="Pictures" accept="image/*">
         <ImageField source="url" title="name" />
@@ -98,7 +98,7 @@ export const ArticleCreate = (props) => (
   <Create undoable={false} title="Create an Article" {...props}>
     <SimpleForm redirect="list">
       <TextInput source="title" validate={[required()]} />
-      <LongTextInput source="teaser" />
+      <LongTextInput source="teaser" validate={[required()]} />
       <RichTextInput source="content" />
       <ImageInput source="image" label="Pictures" accept="image/*">
         <ImageField source="url" title="name" />
