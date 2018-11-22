@@ -16,7 +16,7 @@ const CustomUserMenu = ({ translate, ...props }) => {
       />
       <MenuItemLink
         to={organisationLink}
-        primaryText="Profile"
+        primaryText="Organisation Profile"
         leftIcon={<SettingsIcon />}
       />
     </UserMenu>
