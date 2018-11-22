@@ -65,12 +65,17 @@ export default async (type, resource, params) => {
       break;
     case UPDATE:
       if (params.id === 'me') {
+        const { newPassword, confirmPassword } = params.data;
+        if (newPassword !== confirmPassword) throw new Error(`Passwords don't match`);
         params.id = user;
         params.data = {
           username: params.data.username,
           description: params.data.description,
-          image: params.data.image
+          image: params.data.image,
+          password: params.data.newPassword
         }
+        delete params.data.newPassword;
+        delete params.data.confirmPassword;
       }
       url = `${apiUrl}/${resource}/${params.id}`;
       options.method = 'PUT';
