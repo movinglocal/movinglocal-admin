@@ -9,6 +9,7 @@ import authProvider from '../providers/authProvider';
 import addUploadFeature from '../providers/addUploadFeature';
 import { ArticleList, ArticleEdit, ArticleCreate, ArticleIcon } from '../resources/Article';
 import { OrganisationEdit, OrganisationIcon } from '../resources/Organisation';
+import { UserEdit, UserIcon } from '../resources/User';
 
 const uploadCapableDataProvider = addUploadFeature(strapiProvider);
 
@@ -20,6 +21,7 @@ class App extends PureComponent {
           <Resource name="articles" list={ArticleList} edit={ArticleEdit} create={ArticleCreate} icon={ArticleIcon} />
           <Resource name="tags" />
           <Resource name="organisations" edit={OrganisationEdit} icon={OrganisationIcon} />
+          <Resource name="users" edit={UserEdit} icon={UserIcon} />
         </Admin>
       </JSSProvider>
     );

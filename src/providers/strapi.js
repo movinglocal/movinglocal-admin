@@ -69,8 +69,11 @@ export default async (type, resource, params) => {
         params.data = {
           username: params.data.username,
           description: params.data.description,
-          image: params.data.image
+          image: params.data.image,
+          password: params.data.newPassword
         }
+        delete params.data.newPassword;
+        delete params.data.confirmPassword;
       }
       url = `${apiUrl}/${resource}/${params.id}`;
       options.method = 'PUT';
