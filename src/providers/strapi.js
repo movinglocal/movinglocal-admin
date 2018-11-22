@@ -65,8 +65,6 @@ export default async (type, resource, params) => {
       break;
     case UPDATE:
       if (params.id === 'me') {
-        const { newPassword, confirmPassword } = params.data;
-        if (newPassword !== confirmPassword) throw new Error(`Passwords don't match`);
         params.id = user;
         params.data = {
           username: params.data.username,
