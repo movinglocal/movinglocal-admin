@@ -43,7 +43,7 @@ const ArticleFilter = (props) => (
 );
 
 export const ArticleList = (props) => (
-  <List {...props} filters={<ArticleFilter />} sort={{ field: 'date', order: 'DESC' }}>
+  <List {...props} filters={<ArticleFilter />} sort={{ field: 'date', order: 'DESC' }} bulkActionButtons={false}>
     <Datagrid>
       <TextField source="title" />
       <DateField source="date" showTime />
