@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { PureComponent } from 'react';
 import {
   List,
   Datagrid,
@@ -20,6 +20,7 @@ import {
   SelectInput,
   FormDataConsumer,
   Filter,
+  SelectArrayInput,
   required
 } from 'react-admin';
 import RichTextInput from 'ra-input-rich-text';
@@ -56,16 +57,19 @@ const ArticleTitle = ({ record }) => {
   return <span>Article {record ? `"${record.title}"` : ''}</span>;
 };
 
-const WorkingAutocompleteArrayInput = props => {
-  if (props.input.value === '') {
-    props.input.value = [];
-  } else if (props.input.value) {
-    props.input.value = props.input.value.map(d => d.id || d);
+class WorkingAutocompleteArrayInput extends PureComponent {
+  render() {
+    const props = Object.assign({},this.props);
+    if (props.input.value === '') {
+      props.input.value = [];
+    } else if (props.input.value) {
+      props.input.value = props.input.value.map(d => d.id || d);
+    }
+
+    return (
+      <SelectArrayInput {...props} />
+    );
   }
-
-  // @TODO avoid duplicates
-
-  return <AutocompleteArrayInput {...props} />;
 }
 
 export const ArticleEdit = (props) => (
